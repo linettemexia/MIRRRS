@@ -1,0 +1,61 @@
+/* ============================================================
+   fonts.css — Typography Loading
+   ------------------------------------------------------------
+   Strategy:
+   1. Preferred: Google Fonts (default — easiest)
+   2. Optional:  Self-hosted (faster, GDPR-friendly for EU)
+
+   Recommended pairing for an editorial / modeling agency:
+     - Cormorant Garamond (serif)  — display, headlines, italics
+     - Inter (sans-serif)          — UI, navigation, body labels
+
+   Why this pair?
+   - Cormorant has elegant editorial italics (fashion magazine feel)
+   - Inter is highly legible at small sizes (nav, captions, labels)
+   - Both have generous weight ranges and wide language support
+
+   Alternative pairings to consider:
+   - Playfair Display + Inter
+   - GT Sectra + Söhne (paid, higher-end)
+   - Editorial New (paid) + Neue Haas Grotesk (paid)
+   ============================================================ */
+
+/* ── Option A: Google Fonts (active by default in index.html <head>) ──
+   The <link> tag in index.html already loads:
+     family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400
+     family=Inter:wght@300;400;500
+*/
+
+/* ── Option B: Self-hosted fonts (uncomment when ready) ──
+   1. Download .woff2 files and place them in /assets/fonts/
+   2. Remove the Google Fonts <link> from index.html
+   3. Uncomment the @font-face blocks below.
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 400;
+  font-display: swap;
+  src: url('../fonts/CormorantGaramond-Variable.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 300 400;
+  font-display: swap;
+  src: url('../fonts/CormorantGaramond-Italic-Variable.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url('../fonts/Inter-Variable.woff2') format('woff2-variations');
+}
+*/
+
+/* Fallback stacks live in tokens.css (--font-serif / --font-sans).
+   Both stacks include system fallbacks so the page is readable
+   even if web fonts fail to load. */

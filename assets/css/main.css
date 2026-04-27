@@ -1,0 +1,28 @@
+/* ============================================================
+   main.css — single entry point
+   Import order matters. Do not change unless you know what
+   you're doing — later imports override earlier ones.
+   ============================================================ */
+
+@import url('./tokens.css');
+@import url('./fonts.css');
+@import url('./reset.css');
+@import url('./base.css');
+@import url('./layout.css');
+@import url('./components.css');
+@import url('./pages.css');
+@import url('./utilities.css');
+@import url('./responsive.css');
+
+/* NOTE on @import performance:
+   For production, consider concatenating these files into a
+   single bundle (e.g. via PostCSS, esbuild, or a simple
+   `cat` build step). Browsers fetch each @import as a separate
+   request, which is slower than one combined file.
+
+   Quick build script (run from project root):
+     cat assets/css/{tokens,fonts,reset,base,layout,components,pages,utilities,responsive}.css \
+       > assets/css/bundle.css
+
+   Then reference bundle.css in index.html instead of main.css.
+*/

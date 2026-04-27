@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply — Mirrrs Models</title>
+  <meta name="description" content="Apply to Mirrrs Models. Submit your details and recent photos to be considered for representation." />
+  <link rel="canonical" href="https://mirrrs.com/apply" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" role="banner">
+    <a href="/" class="logo">
+      <span class="logo-sans">MIRR</span><span class="logo-serif">RS</span>
+    </a>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/main">Main</a>
+        <a href="/new-faces">New Faces</a>
+        <a href="/image">Image</a>
+        <a href="/journal">Journal</a>
+        <a href="/contact" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="contact-page">
+    <header class="board-header">
+      <span class="u-eyebrow">Become part of Mirrrs</span>
+      <h1 class="board-title">Apply</h1>
+      <p class="u-mt-4" style="max-width:540px; margin:1rem auto 0; color:var(--color-text-2);">
+        Tell us about yourself. Include three current, unfiltered photos —
+        a portrait, a full-body, and a side profile.
+      </p>
+    </header>
+
+    <!-- REPLACE: action with your real endpoint (Formspree, Basin, /wp-json/contact-form/v1/...) -->
+    <form class="form" data-validate action="/api/apply" method="POST" enctype="multipart/form-data">
+      <div class="form-field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" required data-min-length="2" />
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-field">
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required min="16" max="80" />
+      </div>
+
+      <div class="form-field">
+        <label for="city">City &amp; country</label>
+        <input type="text" id="city" name="city" required />
+      </div>
+
+      <div class="form-field">
+        <label for="height">Height (cm)</label>
+        <input type="number" id="height" name="height" required min="140" max="210" />
+      </div>
+
+      <div class="form-field">
+        <label for="instagram">Instagram (optional)</label>
+        <input type="text" id="instagram" name="instagram" placeholder="@your_handle" />
+      </div>
+
+      <div class="form-field">
+        <label for="message">A few words about you</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label for="photos">Photos (3 files max)</label>
+        <input type="file" id="photos" name="photos[]" accept="image/*" multiple required />
+      </div>
+
+      <div class="hero-actions" style="justify-content:flex-start; margin-top:1rem;">
+        <button class="btn btn-primary" type="submit">Submit application</button>
+      </div>
+
+      <p class="u-mt-8" style="font-size:11px; color:var(--color-text-3); line-height:1.6;">
+        By submitting, you agree to our
+        <a href="/privacy">Privacy Policy</a>. We will only contact you about your application.
+      </p>
+    </form>
+  </main>
+
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>

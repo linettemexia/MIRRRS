@@ -1,0 +1,72 @@
+/* ============================================================
+   utilities.css — single-purpose helper classes
+   Use sparingly; prefer semantic component classes when possible.
+   ============================================================ */
+
+/* ── Display ── */
+.u-hidden       { display: none !important; }
+.u-block        { display: block; }
+.u-inline-block { display: inline-block; }
+.u-flex         { display: flex; }
+.u-grid         { display: grid; }
+
+/* ── Flex helpers ── */
+.u-items-center  { align-items: center; }
+.u-items-end     { align-items: flex-end; }
+.u-justify-between { justify-content: space-between; }
+.u-justify-center  { justify-content: center; }
+.u-gap-2 { gap: var(--space-2); }
+.u-gap-4 { gap: var(--space-4); }
+.u-gap-6 { gap: var(--space-6); }
+
+/* ── Text alignment ── */
+.u-text-left   { text-align: left; }
+.u-text-center { text-align: center; }
+.u-text-right  { text-align: right; }
+
+/* ── Text variants ── */
+.u-eyebrow {
+  font-size: 9px;
+  letter-spacing: var(--ls-mega);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.u-italic { font-style: italic; }
+.u-uppercase { text-transform: uppercase; letter-spacing: var(--ls-widest); }
+
+/* ── Spacing ── */
+.u-mt-0  { margin-top: 0; }
+.u-mt-4  { margin-top: var(--space-4); }
+.u-mt-8  { margin-top: var(--space-8); }
+.u-mb-4  { margin-bottom: var(--space-4); }
+.u-mb-8  { margin-bottom: var(--space-8); }
+
+.u-py-8  { padding-top: var(--space-8);  padding-bottom: var(--space-8); }
+.u-py-16 { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+
+/* ── Visibility helpers ── */
+.u-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Image lazy fade-in (works with loading="lazy") ── */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity var(--t-base) ease;
+}
+img[loading="lazy"].is-loaded,
+img[loading="lazy"][data-loaded="true"] {
+  opacity: 1;
+}
+
+/* Show images that have already finished loading by the time CSS runs */
+img.is-loaded { opacity: 1; }
