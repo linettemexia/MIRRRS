@@ -1,100 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apply — Mirrrs Models</title>
-  <meta name="description" content="Apply to Mirrrs Models. Submit your details and recent photos to be considered for representation." />
-  <link rel="canonical" href="https://mirrrs.com/apply" />
-  <meta name="robots" content="index, follow" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Become a Model — MIRRRS</title>
+<link rel="icon" type="image/svg+xml" href="logo-monogram.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500&display=swap" />
+<link rel="stylesheet" href="styles.css" />
 </head>
+<body class="apply-body">
 
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<!-- ========== TOP NAV ========== -->
+<header class="site-nav">
+  <a href="index.html" class="logo">
+    <span class="logo-mark">MIRRRS</span>
+    <span class="logo-sub">Models</span>
+  </a>
 
-  <header class="nav" role="banner">
-    <a href="/" class="logo">
-      <span class="logo-sans">MIRR</span><span class="logo-serif">RS</span>
+  <nav class="primary-nav">
+    <a href="models.html" data-i18n="nav.models">Models</a>
+    <a href="newsletter.html" data-i18n="nav.newsletter">Newsletter</a>
+    <a href="about.html" data-i18n="nav.about">About</a>
+    <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    <a href="apply.html" data-i18n="nav.apply">Become a Model</a>
+  </nav>
+
+  <div class="nav-extras">
+    <a class="ig-link" href="https://www.instagram.com/mirrrsmodels/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+      </svg>
     </a>
-    <div class="nav-right">
-      <nav class="nav-links" aria-label="Primary">
-        <a href="/main">Main</a>
-        <a href="/new-faces">New Faces</a>
-        <a href="/image">Image</a>
-        <a href="/journal">Journal</a>
-        <a href="/contact" aria-current="page">Contact</a>
-      </nav>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="is-active">EN</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" data-lang="de">DE</button>
     </div>
+  </div>
+</header>
+
+<main class="apply-page">
+
+  <header class="apply-hero">
+    <h1 data-i18n="apply.heading">Become a Model</h1>
+    <p data-i18n="apply.intro">Fill in your details below. Our team reviews every application and replies as soon as possible.</p>
   </header>
 
-  <main id="main" class="contact-page">
-    <header class="board-header">
-      <span class="u-eyebrow">Become part of Mirrrs</span>
-      <h1 class="board-title">Apply</h1>
-      <p class="u-mt-4" style="max-width:540px; margin:1rem auto 0; color:var(--color-text-2);">
-        Tell us about yourself. Include three current, unfiltered photos —
-        a portrait, a full-body, and a side profile.
-      </p>
-    </header>
+  <form class="apply-form" id="apply-form" novalidate>
 
-    <!-- REPLACE: action with your real endpoint (Formspree, Basin, /wp-json/contact-form/v1/...) -->
-    <form class="form" data-validate action="/api/apply" method="POST" enctype="multipart/form-data">
-      <div class="form-field">
-        <label for="name">Full name</label>
-        <input type="text" id="name" name="name" required data-min-length="2" />
+    <!-- ============ PERSONAL ============ -->
+    <section class="apply-section">
+      <h2 class="apply-section-title" data-i18n="apply.personal">Personal</h2>
+
+      <label class="pill pill--select">
+        <span class="pill-label" data-i18n="apply.agency">Agency</span>
+        <select name="agency" required>
+          <option value="" disabled selected hidden></option>
+          <option value="mirrrs">MIRRRS — Hamburg</option>
+          <option value="other">Other / Freelance</option>
+          <option value="none">Not represented</option>
+        </select>
+        <svg class="pill-caret" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </label>
+
+      <label class="pill pill--select">
+        <span class="pill-label" data-i18n="apply.gender">Gender</span>
+        <select name="gender" required>
+          <option value="" disabled selected hidden></option>
+          <option value="female"     data-i18n="apply.gender.female">Female</option>
+          <option value="male"       data-i18n="apply.gender.male">Male</option>
+          <option value="non-binary" data-i18n="apply.gender.nonBinary">Non-binary</option>
+          <option value="other"      data-i18n="apply.gender.other">Other</option>
+        </select>
+        <svg class="pill-caret" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </label>
+
+      <label class="pill">
+        <input type="text" name="firstName" required data-i18n-placeholder="apply.firstName" placeholder="First Name" />
+      </label>
+
+      <label class="pill">
+        <input type="text" name="lastName" required data-i18n-placeholder="apply.lastName" placeholder="Last Name" />
+      </label>
+
+      <label class="pill">
+        <input type="email" name="email" required data-i18n-placeholder="apply.email" placeholder="Email" />
+      </label>
+
+      <label class="pill">
+        <input type="tel" name="phone" required data-i18n-placeholder="apply.phone" placeholder="Phone" />
+      </label>
+
+      <label class="pill pill--select">
+        <span class="pill-label" data-i18n="apply.country">Country</span>
+        <select name="country" required>
+          <option value="" disabled selected hidden></option>
+          <option value="DE">Germany</option>
+          <option value="AT">Austria</option>
+          <option value="CH">Switzerland</option>
+          <option value="NL">Netherlands</option>
+          <option value="BE">Belgium</option>
+          <option value="FR">France</option>
+          <option value="ES">Spain</option>
+          <option value="PT">Portugal</option>
+          <option value="IT">Italy</option>
+          <option value="GB">United Kingdom</option>
+          <option value="IE">Ireland</option>
+          <option value="DK">Denmark</option>
+          <option value="SE">Sweden</option>
+          <option value="NO">Norway</option>
+          <option value="FI">Finland</option>
+          <option value="PL">Poland</option>
+          <option value="CZ">Czechia</option>
+          <option value="HU">Hungary</option>
+          <option value="GR">Greece</option>
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="MX">Mexico</option>
+          <option value="BR">Brazil</option>
+          <option value="AR">Argentina</option>
+          <option value="JP">Japan</option>
+          <option value="KR">South Korea</option>
+          <option value="AU">Australia</option>
+          <option value="OTHER">Other</option>
+        </select>
+        <svg class="pill-caret" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </label>
+
+      <label class="pill">
+        <input type="text" name="city" required data-i18n-placeholder="apply.city" placeholder="City" />
+      </label>
+
+      <label class="pill pill--date">
+        <input type="text"
+               name="birthDate"
+               required
+               onfocus="this.type='date'"
+               onblur="if(!this.value)this.type='text'"
+               data-i18n-placeholder="apply.birthDate"
+               placeholder="Birth date" />
+      </label>
+    </section>
+
+    <!-- ============ DETAILS ============ -->
+    <section class="apply-section">
+      <h2 class="apply-section-title" data-i18n="apply.details">Details</h2>
+
+      <label class="pill pill--select">
+        <span class="pill-label" data-i18n="apply.height">Height</span>
+        <select name="height" required>
+          <option value="" disabled selected hidden></option>
+          <!-- 160 → 195 cm -->
+          <option>160 cm / 5'3"</option>
+          <option>161 cm / 5'3"</option>
+          <option>162 cm / 5'4"</option>
+          <option>163 cm / 5'4"</option>
+          <option>164 cm / 5'5"</option>
+          <option>165 cm / 5'5"</option>
+          <option>166 cm / 5'5"</option>
+          <option>167 cm / 5'6"</option>
+          <option>168 cm / 5'6"</option>
+          <option>169 cm / 5'7"</option>
+          <option>170 cm / 5'7"</option>
+          <option>171 cm / 5'7"</option>
+          <option>172 cm / 5'8"</option>
+          <option>173 cm / 5'8"</option>
+          <option>174 cm / 5'9"</option>
+          <option>175 cm / 5'9"</option>
+          <option>176 cm / 5'9"</option>
+          <option>177 cm / 5'10"</option>
+          <option>178 cm / 5'10"</option>
+          <option>179 cm / 5'10"</option>
+          <option>180 cm / 5'11"</option>
+          <option>181 cm / 5'11"</option>
+          <option>182 cm / 6'0"</option>
+          <option>183 cm / 6'0"</option>
+          <option>184 cm / 6'0"</option>
+          <option>185 cm / 6'1"</option>
+          <option>186 cm / 6'1"</option>
+          <option>187 cm / 6'2"</option>
+          <option>188 cm / 6'2"</option>
+          <option>189 cm / 6'2"</option>
+          <option>190 cm / 6'3"</option>
+          <option>191 cm / 6'3"</option>
+          <option>192 cm / 6'4"</option>
+          <option>193 cm / 6'4"</option>
+          <option>194 cm / 6'4"</option>
+          <option>195 cm / 6'5"</option>
+        </select>
+        <svg class="pill-caret" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </label>
+    </section>
+
+    <!-- ============ IMAGES ============ -->
+    <section class="apply-section">
+      <h2 class="apply-section-title" data-i18n="apply.images">Images</h2>
+
+      <p class="apply-blurb" data-i18n="apply.images.intro">Please upload up to 3 images (Max. 5mb each).</p>
+
+      <div class="image-guide">
+        <div class="image-guide-title" data-i18n="apply.images.guideTitle">GUIDE FOR IMAGES</div>
+        <ul>
+          <li data-i18n="apply.images.guide1">Please submit a full-length, close-up, and profile.</li>
+          <li data-i18n="apply.images.guide2">Do not wear makeup</li>
+          <li data-i18n="apply.images.guide3">Take images in front facing natural daylight</li>
+          <li data-i18n="apply.images.guide4">Clean and simple images are best</li>
+        </ul>
       </div>
 
-      <div class="form-field">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
+      <div class="upload-row">
+        <label class="upload-pill">
+          <span class="upload-text" data-i18n="apply.upload">Upload</span>
+          <svg class="upload-arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M8 12V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <input type="file" name="image1" accept="image/*" hidden />
+          <span class="upload-filename"></span>
+        </label>
+        <label class="upload-pill">
+          <span class="upload-text" data-i18n="apply.upload">Upload</span>
+          <svg class="upload-arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M8 12V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <input type="file" name="image2" accept="image/*" hidden />
+          <span class="upload-filename"></span>
+        </label>
+        <label class="upload-pill">
+          <span class="upload-text" data-i18n="apply.upload">Upload</span>
+          <svg class="upload-arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M8 12V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <input type="file" name="image3" accept="image/*" hidden />
+          <span class="upload-filename"></span>
+        </label>
       </div>
+    </section>
 
-      <div class="form-field">
-        <label for="age">Age</label>
-        <input type="number" id="age" name="age" required min="16" max="80" />
-      </div>
+    <!-- ============ SOCIAL ============ -->
+    <section class="apply-section">
+      <h2 class="apply-section-title" data-i18n="apply.social">Social</h2>
 
-      <div class="form-field">
-        <label for="city">City &amp; country</label>
-        <input type="text" id="city" name="city" required />
-      </div>
+      <label class="pill">
+        <input type="text" name="instagram" data-i18n-placeholder="apply.instagram" placeholder="Instagram (Optional)" />
+      </label>
 
-      <div class="form-field">
-        <label for="height">Height (cm)</label>
-        <input type="number" id="height" name="height" required min="140" max="210" />
-      </div>
+      <label class="pill">
+        <input type="text" name="tiktok" data-i18n-placeholder="apply.tiktok" placeholder="TikTok (Optional)" />
+      </label>
+    </section>
 
-      <div class="form-field">
-        <label for="instagram">Instagram (optional)</label>
-        <input type="text" id="instagram" name="instagram" placeholder="@your_handle" />
-      </div>
+    <!-- ============ TERMS ============ -->
+    <section class="apply-section">
+      <h2 class="apply-section-title" data-i18n="apply.terms">Terms</h2>
 
-      <div class="form-field">
-        <label for="message">A few words about you</label>
-        <textarea id="message" name="message" rows="4"></textarea>
-      </div>
+      <label class="terms-row">
+        <input type="checkbox" name="terms1" required />
+        <span>
+          <span data-i18n="apply.terms1">I read and I accept the Information to the Applicant.</span><br />
+          <a href="#" class="terms-link" data-i18n="apply.terms1.link">INFORMATION TO THE APPLICANT</a>
+        </span>
+      </label>
 
-      <div class="form-field">
-        <label for="photos">Photos (3 files max)</label>
-        <input type="file" id="photos" name="photos[]" accept="image/*" multiple required />
-      </div>
+      <label class="terms-row">
+        <input type="checkbox" name="terms2" />
+        <span data-i18n="apply.terms2">I understand and agree that, upon my acceptance (that is not compulsory) you will also send me information by email and/or SMS about existing and new services and special offers.</span>
+      </label>
 
-      <div class="hero-actions" style="justify-content:flex-start; margin-top:1rem;">
-        <button class="btn btn-primary" type="submit">Submit application</button>
-      </div>
+      <label class="terms-row">
+        <input type="checkbox" name="terms3" />
+        <span data-i18n="apply.terms3">I understand and agree that upon my acceptance (that is not compulsory) you will be entitled to transfer my data to third parties with whom you have a contractual relationship (partners, sponsors …) so that I may receive special offers and other information from them.</span>
+      </label>
 
-      <p class="u-mt-8" style="font-size:11px; color:var(--color-text-3); line-height:1.6;">
-        By submitting, you agree to our
-        <a href="/privacy">Privacy Policy</a>. We will only contact you about your application.
-      </p>
-    </form>
-  </main>
+      <button class="apply-submit" type="submit" data-i18n="apply.submit">Submit Application</button>
 
-  <script type="module" src="/assets/js/main.js"></script>
+      <p class="apply-status" id="apply-status" hidden></p>
+    </section>
+
+  </form>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <a href="index.html" class="logo logo--footer">
+    <span class="logo-mark">MIRRRS</span>
+    <span class="logo-sub">Models</span>
+  </a>
+  <span data-i18n="footer.copy">© 2026 — All rights reserved</span>
+</footer>
+
+<script src="i18n.js"></script>
+<script>
+/* file-name preview on each Upload button */
+document.querySelectorAll('.upload-pill input[type=file]').forEach(input => {
+  input.addEventListener('change', e => {
+    const name = e.target.files && e.target.files[0] && e.target.files[0].name;
+    const span = e.target.parentElement.querySelector('.upload-filename');
+    if (span) span.textContent = name ? '— ' + name : '';
+    if (e.target.parentElement) e.target.parentElement.classList.toggle('has-file', !!name);
+  });
+});
+
+/* very simple front-end submit (no backend) */
+document.getElementById('apply-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const status = document.getElementById('apply-status');
+  if (!e.target.checkValidity()) {
+    status.hidden = false;
+    status.className = 'apply-status apply-status--err';
+    status.textContent = '⚠︎  Please fill in every required field.';
+    e.target.reportValidity();
+    return;
+  }
+  status.hidden = false;
+  status.className = 'apply-status apply-status--ok';
+  status.textContent = '✓  Thanks — your application was submitted. We will be in touch.';
+  e.target.reset();
+  document.querySelectorAll('.upload-pill').forEach(p => p.classList.remove('has-file'));
+  document.querySelectorAll('.upload-filename').forEach(s => s.textContent = '');
+});
+</script>
 </body>
 </html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Models — MIRRRS</title>
+<link rel="icon" type="image/svg+xml" href="logo-monogram.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Moda:wght@400;500&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ========== TOP NAV ========== -->
+<header class="site-nav">
+  <a href="index.html" class="logo">
+    <span class="logo-mark">MIRRRS</span>
+    <span class="logo-sub">Models</span>
+  </a>
+
+  <nav class="primary-nav">
+    <a href="models.html" data-i18n="nav.models">Models</a>
+    <a href="newsletter.html" data-i18n="nav.newsletter">Newsletter</a>
+    <a href="about.html" data-i18n="nav.about">About</a>
+    <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    <a href="apply.html" data-i18n="nav.apply">Become a Model</a>
+  </nav>
+
+  <div class="nav-extras">
+    <a class="ig-link" href="https://www.instagram.com/mirrrsmodels/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+      </svg>
+    </a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="is-active">EN</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" data-lang="de">DE</button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== MODELS GRID ==========
+     This grid is rendered from MediaSlide via mediaslide.js
+     (or from demo data while CONFIG.demo === true).
+-->
+<main class="models-page">
+  <h1 data-i18n="models.heading">Women</h1>
+
+  <!-- ===== Category tabs ===== -->
+  <div class="category-tabs" role="tablist" aria-label="Model categories">
+    <button type="button" role="tab" aria-selected="true"  class="cat-tab is-active" data-category="main"      data-i18n="cat.main">Main</button>
+    <button type="button" role="tab" aria-selected="false" class="cat-tab"           data-category="new-faces" data-i18n="cat.newFaces">New Faces</button>
+    <button type="button" role="tab" aria-selected="false" class="cat-tab"           data-category="image"     data-i18n="cat.image">Image</button>
+  </div>
+
+  <div class="models-grid" id="models-grid">
+    <p class="loading" data-i18n="models.loading">Loading…</p>
+  </div>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <a href="index.html" class="logo logo--footer">
+    <span class="logo-mark">MIRRRS</span>
+    <span class="logo-sub">Models</span>
+  </a>
+  <span data-i18n="footer.copy">© 2026 — All rights reserved</span>
+</footer>
+
+<script src="mediaslide.js"></script>
+<script src="i18n.js"></script>
+<script>
+(async function () {
+  const root = document.getElementById('models-grid');
+  let allModels = [];
+
+  function render(category) {
+    const filtered = category === 'all'
+      ? allModels
+      : allModels.filter(m => (m.category || 'main') === category);
+
+    if (!filtered.length) {
+      root.innerHTML = '<p class="loading">No models in this category yet.</p>';
+      return;
+    }
+    root.innerHTML = filtered.map(m => `
+      <a href="model.html?slug=${encodeURIComponent(m.slug)}" class="model-card">
+        <div class="photo">
+          <img src="${m.thumbnail}" alt="${m.name}" loading="lazy" />
+        </div>
+        <div class="caption">${m.name}</div>
+      </a>
+    `).join('');
+  }
+
+  try {
+    allModels = await window.MIRRRS.fetchModels();
+    if (!allModels.length) {
+      root.innerHTML = '<p class="loading">No models yet.</p>';
+      return;
+    }
+    render('main');
+  } catch (err) {
+    console.error(err);
+    root.innerHTML = '<p class="loading">Could not load models. Check mediaslide.js config.</p>';
+    return;
+  }
+
+  /* category tab switcher */
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cat-tab').forEach(t => {
+        t.classList.remove('is-active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('is-active');
+      tab.setAttribute('aria-selected', 'true');
+      render(tab.dataset.category);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

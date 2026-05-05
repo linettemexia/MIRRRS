@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid meet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500&amp;display=swap');
+    .mark { font-family: 'Bodoni Moda', 'Didot', serif; font-size: 110px; fill: #111; letter-spacing: 18px; font-weight: 400; }
+    .sub  { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 18px; fill: #111; letter-spacing: 12px; font-weight: 400; }
+  </style>
+  <text class="mark" x="300" y="125" text-anchor="middle">MIRRRS</text>
+  <text class="sub"  x="300" y="170" text-anchor="middle">MODELS</text>
+</svg>
