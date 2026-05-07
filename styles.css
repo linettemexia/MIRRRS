@@ -173,6 +173,30 @@ video {
   margin-left: 2px;
 }
 
+/* name + IG icon row */
+.model-name-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.model-ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #aaa;
+  transition: color 0.2s;
+  text-decoration: none;
+  align-self: flex-end;
+  margin-bottom: 6px;
+}
+.model-ig:hover { color: var(--accent); }
+.model-ig svg { width: 15px; height: 15px; flex: 0 0 auto; }
+
 .model-actions {
   display: flex;
   gap: 18px;
@@ -511,13 +535,20 @@ video {
 
 .model-card .caption {
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.caption-name {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   position: relative;
   display: inline-block;
 }
-.model-card .caption::after {
+.caption-name::after {
   content: '';
   position: absolute;
   left: 0;
@@ -527,8 +558,27 @@ video {
   background: var(--accent);
   transition: width 0.35s ease;
 }
-.model-card:hover .caption::after {
+.model-card:hover .caption-name::after {
   width: 100%;
+}
+
+.caption-ig {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #bbb;
+  flex: 0 0 auto;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+.caption-ig:hover {
+  color: var(--accent);
+}
+.caption-ig svg {
+  width: 14px;
+  height: 14px;
 }
 
 /* ---------- CONTACT PAGE ---------- */
@@ -1038,4 +1088,21 @@ video {
   .upload-pill {
     width: 100%;
   }
+}
+
+/* ── Model card: no-image placeholder ─────── */
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #f4f0eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-placeholder span {
+  font-family: 'Bodoni Moda', 'Didot', serif;
+  font-size: clamp(18px, 2.5vw, 28px);
+  letter-spacing: 0.08em;
+  color: #bbb;
+  font-style: italic;
 }

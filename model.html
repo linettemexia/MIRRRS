@@ -47,7 +47,19 @@
 
   <!-- Filled in by JS from mediaslide.js -->
   <section class="model-header">
-    <h1 class="model-name" id="model-name">Loading…</h1>
+    <div>
+      <div class="model-name-row">
+        <h1 class="model-name" id="model-name">Loading…</h1>
+        <a class="model-ig" id="model-ig-link" href="#" target="_blank" rel="noopener" aria-label="Instagram" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="15" height="15">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+          Instagram
+        </a>
+      </div>
+    </div>
     <div class="model-actions">
       <button type="button" data-i18n="model.addToPackage">Add to package</button>
       <a href="#" download data-i18n="model.downloadPdf">Download PDF</a>
@@ -128,6 +140,13 @@
   /* ---- populate the page from MediaSlide data ---- */
   document.title = `${model.name} — MIRRRS Models`;
   document.getElementById('model-name').textContent = model.name;
+
+  /* Instagram link */
+  if (model.instagram) {
+    const igLink = document.getElementById('model-ig-link');
+    igLink.href = model.instagram;
+    igLink.style.display = 'inline-flex';
+  }
 
   const STATS = [
     ['Height', model.stats.height],

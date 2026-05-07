@@ -7,8 +7,575 @@
 <link rel="icon" type="image/svg+xml" href="logo-monogram.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&display=swap" />
 <link rel="stylesheet" href="styles.css" />
+<style>
+/* ============================================================
+   APPLY PAGE — MIRRRS editorial redesign
+   ============================================================ */
+
+.apply-body {
+  background: #fff;
+}
+
+/* ---- PAGE LAYOUT ---- */
+.apply-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 73px);
+}
+
+/* ---- LEFT COLUMN — hero / intro ---- */
+.apply-aside {
+  position: sticky;
+  top: 73px; /* nav height */
+  height: calc(100vh - 73px);
+  border-right: 1px solid #ececec;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 72px 56px 56px;
+  overflow: hidden;
+}
+
+.apply-aside-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.apply-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin: 0 0 28px;
+}
+
+.apply-aside h1 {
+  font-family: 'Bodoni Moda', 'Playfair Display', 'Didot', 'Times New Roman', serif;
+  font-size: clamp(44px, 4.5vw, 72px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.06;
+  margin: 0 0 32px;
+  color: #111;
+}
+
+.apply-aside h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.apply-aside p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666;
+  max-width: 340px;
+  margin: 0 0 40px;
+  letter-spacing: 0.02em;
+}
+
+.apply-aside-note {
+  border-top: 1px solid #ececec;
+  padding-top: 20px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #aaa;
+  line-height: 1.7;
+}
+
+.aside-step-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.aside-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #888;
+  line-height: 1.5;
+}
+
+.aside-step-num {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 16px;
+  color: var(--accent);
+  line-height: 1;
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+/* ---- RIGHT COLUMN — form ---- */
+.apply-form-col {
+  padding: 72px 56px 100px;
+  background: #fff;
+}
+
+/* ---- SECTION BLOCKS ---- */
+.af-section {
+  padding-top: 64px;
+  border-top: 1px solid #ececec;
+  margin-top: 0;
+}
+
+.af-section:first-of-type {
+  padding-top: 0;
+  border-top: none;
+}
+
+.af-section + .af-section {
+  margin-top: 64px;
+}
+
+.af-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.af-section-num {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 11px;
+  color: #bbb;
+  letter-spacing: 0.18em;
+}
+
+.af-section-title {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #111;
+  margin: 0;
+}
+
+/* ---- FIELD GRID ---- */
+.af-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.af-grid--full {
+  grid-template-columns: 1fr;
+}
+
+.af-field {
+  position: relative;
+}
+
+.af-field--span2 {
+  grid-column: 1 / -1;
+}
+
+/* ---- INPUTS ---- */
+.af-input,
+.af-select {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  padding: 14px 0 10px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 300;
+  color: #111;
+  letter-spacing: 0.02em;
+  outline: none;
+  transition: border-color 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+.af-input::placeholder {
+  color: #bbb;
+  font-weight: 300;
+}
+
+.af-input:focus,
+.af-select:focus {
+  border-bottom-color: #111;
+}
+
+.af-input:focus::placeholder {
+  color: #ddd;
+}
+
+/* floating label pattern */
+.af-label {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  font-size: 15px;
+  font-weight: 300;
+  color: #bbb;
+  pointer-events: none;
+  letter-spacing: 0.02em;
+  transition: top 0.18s ease, font-size 0.18s ease, color 0.18s ease;
+}
+
+.af-select-wrap {
+  position: relative;
+}
+
+.af-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-4px);
+  border: 4px solid transparent;
+  border-top-color: #aaa;
+  pointer-events: none;
+}
+
+.af-select {
+  cursor: pointer;
+  color: #111;
+  padding-right: 20px;
+}
+
+.af-select option[value=""] {
+  color: #bbb;
+}
+
+/* shrink the floating label when select is not empty */
+.af-select:not([data-empty="true"]) ~ .af-label,
+.af-select:focus ~ .af-label {
+  top: -8px;
+  font-size: 10px;
+  color: #aaa;
+  letter-spacing: 0.1em;
+}
+
+/* ---- IMAGE GUIDE ---- */
+.af-guide {
+  background: #f7f5f2;
+  padding: 24px 28px;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.af-guide-title {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.af-guide ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.af-guide li {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+
+.af-guide li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 10px;
+  top: 2px;
+}
+
+/* ---- UPLOAD SLOTS ---- */
+.af-uploads {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.af-upload-slot {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border: 1px dashed #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  overflow: hidden;
+  background: transparent;
+}
+
+.af-upload-slot:hover {
+  border-color: #aaa;
+  background: #fafafa;
+}
+
+.af-upload-slot.has-file {
+  border-color: var(--accent);
+  border-style: solid;
+}
+
+.af-upload-slot input[type=file] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.af-upload-icon {
+  width: 18px;
+  height: 18px;
+  color: #bbb;
+  margin-bottom: 8px;
+  transition: color 0.2s ease;
+}
+
+.af-upload-slot:hover .af-upload-icon {
+  color: #888;
+}
+
+.af-upload-slot.has-file .af-upload-icon {
+  color: var(--accent);
+}
+
+.af-upload-label-text {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #bbb;
+  transition: color 0.2s ease;
+}
+
+.af-upload-slot:hover .af-upload-label-text {
+  color: #888;
+}
+
+.af-upload-slot.has-file .af-upload-label-text {
+  color: var(--accent);
+}
+
+.af-upload-filename {
+  position: absolute;
+  bottom: 10px;
+  left: 8px;
+  right: 8px;
+  font-size: 10px;
+  color: #888;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- TERMS ---- */
+.af-terms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.af-check-row {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 16px;
+  align-items: start;
+  cursor: pointer;
+}
+
+.af-check-row input[type=checkbox] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  background: transparent;
+  margin: 3px 0 0;
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  flex: 0 0 auto;
+  transition: border-color 0.15s ease;
+}
+
+.af-check-row:hover input[type=checkbox] {
+  border-color: #888;
+}
+
+.af-check-row input[type=checkbox]:checked {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.af-check-row input[type=checkbox]::after {
+  content: '';
+  display: block;
+  width: 9px;
+  height: 6px;
+  border-left: 1.4px solid #fff;
+  border-bottom: 1.4px solid #fff;
+  transform: rotate(-46deg) translateY(-2px) scale(0);
+  transition: transform 0.12s ease;
+}
+
+.af-check-row input[type=checkbox]:checked::after {
+  transform: rotate(-46deg) translateY(-2px) scale(1);
+}
+
+.af-check-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #555;
+  letter-spacing: 0.01em;
+}
+
+.af-terms-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- SUBMIT ---- */
+.af-submit-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+.af-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #111;
+  color: #fff;
+  border: 0;
+  padding: 16px 40px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.2s ease;
+}
+
+.af-submit:hover {
+  background: var(--accent);
+}
+
+.af-submit:active {
+  opacity: 0.85;
+}
+
+.af-submit svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+.af-submit:hover svg {
+  transform: translateX(3px);
+}
+
+.af-status {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  display: none;
+}
+
+.af-status.is-ok  { display: block; color: var(--accent); }
+.af-status.is-err { display: block; color: #b00020; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1000px) {
+  .apply-page {
+    grid-template-columns: 1fr;
+  }
+
+  .apply-aside {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #ececec;
+    padding: 48px 24px 40px;
+  }
+
+  .apply-aside-inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .apply-aside h1 {
+    font-size: clamp(34px, 8vw, 54px);
+  }
+
+  .aside-step-list {
+    margin-top: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px 32px;
+  }
+
+  .apply-form-col {
+    padding: 40px 24px 80px;
+  }
+
+  .af-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .af-uploads {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .af-uploads {
+    grid-template-columns: 1fr;
+  }
+
+  .af-upload-slot {
+    aspect-ratio: 4 / 3;
+  }
+
+  .af-submit-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
 </head>
 <body class="apply-body">
 
@@ -18,7 +585,6 @@
     <span class="logo-mark">MIRRRS</span>
     <span class="logo-sub">Models</span>
   </a>
-
   <nav class="primary-nav">
     <a href="models.html" data-i18n="nav.models">Models</a>
     <a href="newsletter.html" data-i18n="nav.newsletter">Newsletter</a>
@@ -26,7 +592,6 @@
     <a href="contact.html" data-i18n="nav.contact">Contact</a>
     <a href="apply.html" data-i18n="nav.apply">Become a Model</a>
   </nav>
-
   <div class="nav-extras">
     <a class="ig-link" href="https://www.instagram.com/mirrrsmodels/" target="_blank" rel="noopener" aria-label="Instagram">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -45,250 +610,291 @@
 
 <main class="apply-page">
 
-  <header class="apply-hero">
-    <h1 data-i18n="apply.heading">Become a Model</h1>
-    <p data-i18n="apply.intro">Fill in your details below. Our team reviews every application and replies as soon as possible.</p>
-  </header>
-
-  <form class="apply-form" id="apply-form" novalidate>
-
-    <!-- ============ PERSONAL ============ -->
-    <section class="apply-section">
-      <h2 class="apply-section-title" data-i18n="apply.personal">Personal</h2>
-
-      <label class="pill pill--select">
-        <span class="pill-label" data-i18n="apply.agency">Agency</span>
-        <select name="agency" required>
-          <option value="" disabled selected hidden></option>
-          <option value="mirrrs">MIRRRS — Hamburg</option>
-          <option value="other">Other / Freelance</option>
-          <option value="none">Not represented</option>
-        </select>
-        <svg class="pill-caret" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
-          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </label>
-
-      <label class="pill pill--select">
-        <span class="pill-label" data-i18n="apply.gender">Gender</span>
-        <select name="gender" required>
-          <option value="" disabled selected hidden></option>
-          <option value="female"     data-i18n="apply.gender.female">Female</option>
-          <option value="male"       data-i18n="apply.gender.male">Male</option>
-          <option value="non-binary" data-i18n="apply.gender.nonBinary">Non-binary</option>
-          <option value="other"      data-i18n="apply.gender.other">Other</option>
-        </select>
-        <svg class="pill-caret" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
-          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </label>
-
-      <label class="pill">
-        <input type="text" name="firstName" required data-i18n-placeholder="apply.firstName" placeholder="First Name" />
-      </label>
-
-      <label class="pill">
-        <input type="text" name="lastName" required data-i18n-placeholder="apply.lastName" placeholder="Last Name" />
-      </label>
-
-      <label class="pill">
-        <input type="email" name="email" required data-i18n-placeholder="apply.email" placeholder="Email" />
-      </label>
-
-      <label class="pill">
-        <input type="tel" name="phone" required data-i18n-placeholder="apply.phone" placeholder="Phone" />
-      </label>
-
-      <label class="pill pill--select">
-        <span class="pill-label" data-i18n="apply.country">Country</span>
-        <select name="country" required>
-          <option value="" disabled selected hidden></option>
-          <option value="DE">Germany</option>
-          <option value="AT">Austria</option>
-          <option value="CH">Switzerland</option>
-          <option value="NL">Netherlands</option>
-          <option value="BE">Belgium</option>
-          <option value="FR">France</option>
-          <option value="ES">Spain</option>
-          <option value="PT">Portugal</option>
-          <option value="IT">Italy</option>
-          <option value="GB">United Kingdom</option>
-          <option value="IE">Ireland</option>
-          <option value="DK">Denmark</option>
-          <option value="SE">Sweden</option>
-          <option value="NO">Norway</option>
-          <option value="FI">Finland</option>
-          <option value="PL">Poland</option>
-          <option value="CZ">Czechia</option>
-          <option value="HU">Hungary</option>
-          <option value="GR">Greece</option>
-          <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="MX">Mexico</option>
-          <option value="BR">Brazil</option>
-          <option value="AR">Argentina</option>
-          <option value="JP">Japan</option>
-          <option value="KR">South Korea</option>
-          <option value="AU">Australia</option>
-          <option value="OTHER">Other</option>
-        </select>
-        <svg class="pill-caret" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
-          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </label>
-
-      <label class="pill">
-        <input type="text" name="city" required data-i18n-placeholder="apply.city" placeholder="City" />
-      </label>
-
-      <label class="pill pill--date">
-        <input type="text"
-               name="birthDate"
-               required
-               onfocus="this.type='date'"
-               onblur="if(!this.value)this.type='text'"
-               data-i18n-placeholder="apply.birthDate"
-               placeholder="Birth date" />
-      </label>
-    </section>
-
-    <!-- ============ DETAILS ============ -->
-    <section class="apply-section">
-      <h2 class="apply-section-title" data-i18n="apply.details">Details</h2>
-
-      <label class="pill pill--select">
-        <span class="pill-label" data-i18n="apply.height">Height</span>
-        <select name="height" required>
-          <option value="" disabled selected hidden></option>
-          <!-- 160 → 195 cm -->
-          <option>160 cm / 5'3"</option>
-          <option>161 cm / 5'3"</option>
-          <option>162 cm / 5'4"</option>
-          <option>163 cm / 5'4"</option>
-          <option>164 cm / 5'5"</option>
-          <option>165 cm / 5'5"</option>
-          <option>166 cm / 5'5"</option>
-          <option>167 cm / 5'6"</option>
-          <option>168 cm / 5'6"</option>
-          <option>169 cm / 5'7"</option>
-          <option>170 cm / 5'7"</option>
-          <option>171 cm / 5'7"</option>
-          <option>172 cm / 5'8"</option>
-          <option>173 cm / 5'8"</option>
-          <option>174 cm / 5'9"</option>
-          <option>175 cm / 5'9"</option>
-          <option>176 cm / 5'9"</option>
-          <option>177 cm / 5'10"</option>
-          <option>178 cm / 5'10"</option>
-          <option>179 cm / 5'10"</option>
-          <option>180 cm / 5'11"</option>
-          <option>181 cm / 5'11"</option>
-          <option>182 cm / 6'0"</option>
-          <option>183 cm / 6'0"</option>
-          <option>184 cm / 6'0"</option>
-          <option>185 cm / 6'1"</option>
-          <option>186 cm / 6'1"</option>
-          <option>187 cm / 6'2"</option>
-          <option>188 cm / 6'2"</option>
-          <option>189 cm / 6'2"</option>
-          <option>190 cm / 6'3"</option>
-          <option>191 cm / 6'3"</option>
-          <option>192 cm / 6'4"</option>
-          <option>193 cm / 6'4"</option>
-          <option>194 cm / 6'4"</option>
-          <option>195 cm / 6'5"</option>
-        </select>
-        <svg class="pill-caret" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
-          <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </label>
-    </section>
-
-    <!-- ============ IMAGES ============ -->
-    <section class="apply-section">
-      <h2 class="apply-section-title" data-i18n="apply.images">Images</h2>
-
-      <p class="apply-blurb" data-i18n="apply.images.intro">Please upload up to 3 images (Max. 5mb each).</p>
-
-      <div class="image-guide">
-        <div class="image-guide-title" data-i18n="apply.images.guideTitle">GUIDE FOR IMAGES</div>
-        <ul>
-          <li data-i18n="apply.images.guide1">Please submit a full-length, close-up, and profile.</li>
-          <li data-i18n="apply.images.guide2">Do not wear makeup</li>
-          <li data-i18n="apply.images.guide3">Take images in front facing natural daylight</li>
-          <li data-i18n="apply.images.guide4">Clean and simple images are best</li>
-        </ul>
+  <!-- ============ LEFT ASIDE ============ -->
+  <aside class="apply-aside">
+    <div class="apply-aside-inner">
+      <div>
+        <p class="apply-eyebrow" data-i18n="apply.eyebrow">Hamburg · MIRRRS Models</p>
+        <h1>
+          <span data-i18n="apply.heading.line1">Become</span><br>
+          <em data-i18n="apply.heading.line2">a Model.</em>
+        </h1>
+        <p data-i18n="apply.intro">Fill in your details below. Our team reviews every application and replies as soon as possible.</p>
       </div>
 
-      <div class="upload-row">
-        <label class="upload-pill">
-          <span class="upload-text" data-i18n="apply.upload">Upload</span>
-          <svg class="upload-arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-            <path d="M8 12V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <input type="file" name="image1" accept="image/*" hidden />
-          <span class="upload-filename"></span>
-        </label>
-        <label class="upload-pill">
-          <span class="upload-text" data-i18n="apply.upload">Upload</span>
-          <svg class="upload-arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-            <path d="M8 12V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <input type="file" name="image2" accept="image/*" hidden />
-          <span class="upload-filename"></span>
-        </label>
-        <label class="upload-pill">
-          <span class="upload-text" data-i18n="apply.upload">Upload</span>
-          <svg class="upload-arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-            <path d="M8 12V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <input type="file" name="image3" accept="image/*" hidden />
-          <span class="upload-filename"></span>
-        </label>
-      </div>
-    </section>
+      <ul class="aside-step-list" aria-label="Process steps">
+        <li class="aside-step">
+          <span class="aside-step-num">01</span>
+          <span data-i18n="apply.step1">Fill in the form</span>
+        </li>
+        <li class="aside-step">
+          <span class="aside-step-num">02</span>
+          <span data-i18n="apply.step2">We review your application</span>
+        </li>
+        <li class="aside-step">
+          <span class="aside-step-num">03</span>
+          <span data-i18n="apply.step3">We get in touch</span>
+        </li>
+      </ul>
+    </div>
 
-    <!-- ============ SOCIAL ============ -->
-    <section class="apply-section">
-      <h2 class="apply-section-title" data-i18n="apply.social">Social</h2>
+    <div class="apply-aside-note" data-i18n="apply.sideNote">
+      Models Agency Hamburg<br>
+      Karolinenstrasse 6 · 20357
+    </div>
+  </aside>
 
-      <label class="pill">
-        <input type="text" name="instagram" data-i18n-placeholder="apply.instagram" placeholder="Instagram (Optional)" />
-      </label>
+  <!-- ============ RIGHT FORM COLUMN ============ -->
+  <div class="apply-form-col">
+    <form id="apply-form" novalidate>
 
-      <label class="pill">
-        <input type="text" name="tiktok" data-i18n-placeholder="apply.tiktok" placeholder="TikTok (Optional)" />
-      </label>
-    </section>
+      <!-- ---- PERSONAL ---- -->
+      <section class="af-section">
+        <div class="af-section-head">
+          <span class="af-section-num">01</span>
+          <h2 class="af-section-title" data-i18n="apply.personal">Personal</h2>
+        </div>
 
-    <!-- ============ TERMS ============ -->
-    <section class="apply-section">
-      <h2 class="apply-section-title" data-i18n="apply.terms">Terms</h2>
+        <div class="af-grid">
 
-      <label class="terms-row">
-        <input type="checkbox" name="terms1" required />
-        <span>
-          <span data-i18n="apply.terms1">I read and I accept the Information to the Applicant.</span><br />
-          <a href="#" class="terms-link" data-i18n="apply.terms1.link">INFORMATION TO THE APPLICANT</a>
-        </span>
-      </label>
+          <div class="af-field af-field--span2">
+            <div class="af-select-wrap">
+              <select class="af-select" name="agency" required data-empty="true">
+                <option value="" disabled selected hidden></option>
+                <option value="mirrrs">MIRRRS — Hamburg</option>
+                <option value="other">Other / Freelance</option>
+                <option value="none">Not represented</option>
+              </select>
+              <label class="af-label" data-i18n="apply.agency">Agency</label>
+            </div>
+          </div>
 
-      <label class="terms-row">
-        <input type="checkbox" name="terms2" />
-        <span data-i18n="apply.terms2">I understand and agree that, upon my acceptance (that is not compulsory) you will also send me information by email and/or SMS about existing and new services and special offers.</span>
-      </label>
+          <div class="af-field af-field--span2">
+            <div class="af-select-wrap">
+              <select class="af-select" name="gender" required data-empty="true">
+                <option value="" disabled selected hidden></option>
+                <option value="female"     data-i18n="apply.gender.female">Female</option>
+                <option value="male"       data-i18n="apply.gender.male">Male</option>
+                <option value="non-binary" data-i18n="apply.gender.nonBinary">Non-binary</option>
+                <option value="other"      data-i18n="apply.gender.other">Other</option>
+              </select>
+              <label class="af-label" data-i18n="apply.gender">Gender</label>
+            </div>
+          </div>
 
-      <label class="terms-row">
-        <input type="checkbox" name="terms3" />
-        <span data-i18n="apply.terms3">I understand and agree that upon my acceptance (that is not compulsory) you will be entitled to transfer my data to third parties with whom you have a contractual relationship (partners, sponsors …) so that I may receive special offers and other information from them.</span>
-      </label>
+          <div class="af-field">
+            <input class="af-input" type="text" name="firstName" required data-i18n-placeholder="apply.firstName" placeholder="First Name" />
+          </div>
 
-      <button class="apply-submit" type="submit" data-i18n="apply.submit">Submit Application</button>
+          <div class="af-field">
+            <input class="af-input" type="text" name="lastName" required data-i18n-placeholder="apply.lastName" placeholder="Last Name" />
+          </div>
 
-      <p class="apply-status" id="apply-status" hidden></p>
-    </section>
+          <div class="af-field af-field--span2">
+            <input class="af-input" type="email" name="email" required data-i18n-placeholder="apply.email" placeholder="Email" />
+          </div>
 
-  </form>
+          <div class="af-field af-field--span2">
+            <input class="af-input" type="tel" name="phone" required data-i18n-placeholder="apply.phone" placeholder="Phone" />
+          </div>
+
+          <div class="af-field">
+            <div class="af-select-wrap">
+              <select class="af-select" name="country" required data-empty="true">
+                <option value="" disabled selected hidden></option>
+                <option value="DE">Germany</option>
+                <option value="AT">Austria</option>
+                <option value="CH">Switzerland</option>
+                <option value="NL">Netherlands</option>
+                <option value="BE">Belgium</option>
+                <option value="FR">France</option>
+                <option value="ES">Spain</option>
+                <option value="PT">Portugal</option>
+                <option value="IT">Italy</option>
+                <option value="GB">United Kingdom</option>
+                <option value="IE">Ireland</option>
+                <option value="DK">Denmark</option>
+                <option value="SE">Sweden</option>
+                <option value="NO">Norway</option>
+                <option value="FI">Finland</option>
+                <option value="PL">Poland</option>
+                <option value="CZ">Czechia</option>
+                <option value="HU">Hungary</option>
+                <option value="GR">Greece</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="MX">Mexico</option>
+                <option value="BR">Brazil</option>
+                <option value="AR">Argentina</option>
+                <option value="JP">Japan</option>
+                <option value="KR">South Korea</option>
+                <option value="AU">Australia</option>
+                <option value="OTHER">Other</option>
+              </select>
+              <label class="af-label" data-i18n="apply.country">Country</label>
+            </div>
+          </div>
+
+          <div class="af-field">
+            <input class="af-input" type="text" name="city" required data-i18n-placeholder="apply.city" placeholder="City" />
+          </div>
+
+          <div class="af-field af-field--span2">
+            <input class="af-input" type="text" name="birthDate" required
+                   onfocus="this.type='date'"
+                   onblur="if(!this.value)this.type='text'"
+                   data-i18n-placeholder="apply.birthDate"
+                   placeholder="Birth date" />
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ---- DETAILS ---- -->
+      <section class="af-section">
+        <div class="af-section-head">
+          <span class="af-section-num">02</span>
+          <h2 class="af-section-title" data-i18n="apply.details">Details</h2>
+        </div>
+
+        <div class="af-grid af-grid--full">
+          <div class="af-field">
+            <div class="af-select-wrap">
+              <select class="af-select" name="height" required data-empty="true">
+                <option value="" disabled selected hidden></option>
+                <option>160 cm / 5'3"</option><option>161 cm / 5'3"</option>
+                <option>162 cm / 5'4"</option><option>163 cm / 5'4"</option>
+                <option>164 cm / 5'5"</option><option>165 cm / 5'5"</option>
+                <option>166 cm / 5'5"</option><option>167 cm / 5'6"</option>
+                <option>168 cm / 5'6"</option><option>169 cm / 5'7"</option>
+                <option>170 cm / 5'7"</option><option>171 cm / 5'7"</option>
+                <option>172 cm / 5'8"</option><option>173 cm / 5'8"</option>
+                <option>174 cm / 5'9"</option><option>175 cm / 5'9"</option>
+                <option>176 cm / 5'9"</option><option>177 cm / 5'10"</option>
+                <option>178 cm / 5'10"</option><option>179 cm / 5'10"</option>
+                <option>180 cm / 5'11"</option><option>181 cm / 5'11"</option>
+                <option>182 cm / 6'0"</option><option>183 cm / 6'0"</option>
+                <option>184 cm / 6'0"</option><option>185 cm / 6'1"</option>
+                <option>186 cm / 6'1"</option><option>187 cm / 6'2"</option>
+                <option>188 cm / 6'2"</option><option>189 cm / 6'2"</option>
+                <option>190 cm / 6'3"</option><option>191 cm / 6'3"</option>
+                <option>192 cm / 6'4"</option><option>193 cm / 6'4"</option>
+                <option>194 cm / 6'4"</option><option>195 cm / 6'5"</option>
+              </select>
+              <label class="af-label" data-i18n="apply.height">Height</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---- IMAGES ---- -->
+      <section class="af-section">
+        <div class="af-section-head">
+          <span class="af-section-num">03</span>
+          <h2 class="af-section-title" data-i18n="apply.images">Images</h2>
+        </div>
+
+        <p style="font-size:13px;color:#888;margin:0 0 20px;letter-spacing:0.02em;" data-i18n="apply.images.intro">
+          Please upload up to 3 images (Max. 5mb each).
+        </p>
+
+        <div class="af-guide">
+          <div class="af-guide-title" data-i18n="apply.images.guideTitle">Guide for images</div>
+          <ul>
+            <li data-i18n="apply.images.guide1">Please submit a full-length, close-up, and profile.</li>
+            <li data-i18n="apply.images.guide2">Do not wear makeup</li>
+            <li data-i18n="apply.images.guide3">Take images in front facing natural daylight</li>
+            <li data-i18n="apply.images.guide4">Clean and simple images are best</li>
+          </ul>
+        </div>
+
+        <div class="af-uploads">
+          <label class="af-upload-slot" aria-label="Upload image 1">
+            <svg class="af-upload-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 11V3M4 6l4-4 4 4" /><path d="M2 14h12" />
+            </svg>
+            <span class="af-upload-label-text" data-i18n="apply.upload">Upload</span>
+            <input type="file" name="image1" accept="image/*" />
+            <span class="af-upload-filename"></span>
+          </label>
+          <label class="af-upload-slot" aria-label="Upload image 2">
+            <svg class="af-upload-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 11V3M4 6l4-4 4 4" /><path d="M2 14h12" />
+            </svg>
+            <span class="af-upload-label-text" data-i18n="apply.upload">Upload</span>
+            <input type="file" name="image2" accept="image/*" />
+            <span class="af-upload-filename"></span>
+          </label>
+          <label class="af-upload-slot" aria-label="Upload image 3">
+            <svg class="af-upload-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 11V3M4 6l4-4 4 4" /><path d="M2 14h12" />
+            </svg>
+            <span class="af-upload-label-text" data-i18n="apply.upload">Upload</span>
+            <input type="file" name="image3" accept="image/*" />
+            <span class="af-upload-filename"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- ---- SOCIAL ---- -->
+      <section class="af-section">
+        <div class="af-section-head">
+          <span class="af-section-num">04</span>
+          <h2 class="af-section-title" data-i18n="apply.social">Social</h2>
+        </div>
+
+        <div class="af-grid af-grid--full">
+          <div class="af-field">
+            <input class="af-input" type="text" name="instagram" data-i18n-placeholder="apply.instagram" placeholder="Instagram (Optional)" />
+          </div>
+          <div class="af-field">
+            <input class="af-input" type="text" name="tiktok" data-i18n-placeholder="apply.tiktok" placeholder="TikTok (Optional)" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ---- TERMS ---- -->
+      <section class="af-section">
+        <div class="af-section-head">
+          <span class="af-section-num">05</span>
+          <h2 class="af-section-title" data-i18n="apply.terms">Terms</h2>
+        </div>
+
+        <div class="af-terms-list">
+          <label class="af-check-row">
+            <input type="checkbox" name="terms1" required />
+            <span class="af-check-text">
+              <span data-i18n="apply.terms1">I read and I accept the Information to the Applicant.</span><br>
+              <a href="#" class="af-terms-link" data-i18n="apply.terms1.link">Information to the Applicant</a>
+            </span>
+          </label>
+
+          <label class="af-check-row">
+            <input type="checkbox" name="terms2" />
+            <span class="af-check-text" data-i18n="apply.terms2">I understand and agree that, upon my acceptance (that is not compulsory) you will also send me information by email and/or SMS about existing and new services and special offers.</span>
+          </label>
+
+          <label class="af-check-row">
+            <input type="checkbox" name="terms3" />
+            <span class="af-check-text" data-i18n="apply.terms3">I understand and agree that upon my acceptance (that is not compulsory) you will be entitled to transfer my data to third parties with whom you have a contractual relationship (partners, sponsors …) so that I may receive special offers and other information from them.</span>
+          </label>
+        </div>
+
+        <div class="af-submit-row">
+          <button class="af-submit" type="submit">
+            <span data-i18n="apply.submit">Submit Application</span>
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4"/>
+            </svg>
+          </button>
+          <p class="af-status" id="af-status"></p>
+        </div>
+
+      </section>
+
+    </form>
+  </div>
+
 </main>
 
 <!-- ========== FOOTER ========== -->
@@ -302,33 +908,61 @@
 
 <script src="i18n.js"></script>
 <script>
-/* file-name preview on each Upload button */
-document.querySelectorAll('.upload-pill input[type=file]').forEach(input => {
+/* ---- Select: toggle data-empty so floating label works ---- */
+document.querySelectorAll('.af-select').forEach(sel => {
+  function update() {
+    sel.dataset.empty = sel.value === '' ? 'true' : 'false';
+  }
+  sel.addEventListener('change', update);
+  update();
+});
+
+/* ---- File upload: show filename, toggle .has-file ---- */
+document.querySelectorAll('.af-upload-slot input[type=file]').forEach(input => {
   input.addEventListener('change', e => {
-    const name = e.target.files && e.target.files[0] && e.target.files[0].name;
-    const span = e.target.parentElement.querySelector('.upload-filename');
-    if (span) span.textContent = name ? '— ' + name : '';
-    if (e.target.parentElement) e.target.parentElement.classList.toggle('has-file', !!name);
+    const file = e.target.files && e.target.files[0];
+    const slot = e.target.closest('.af-upload-slot');
+    const name = slot.querySelector('.af-upload-filename');
+    if (file) {
+      slot.classList.add('has-file');
+      name.textContent = file.name;
+    } else {
+      slot.classList.remove('has-file');
+      name.textContent = '';
+    }
   });
 });
 
-/* very simple front-end submit (no backend) */
-document.getElementById('apply-form').addEventListener('submit', e => {
+/* ---- Form submit ---- */
+document.getElementById('apply-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const status = document.getElementById('apply-status');
-  if (!e.target.checkValidity()) {
-    status.hidden = false;
-    status.className = 'apply-status apply-status--err';
-    status.textContent = '⚠︎  Please fill in every required field.';
-    e.target.reportValidity();
+  const status = document.getElementById('af-status');
+
+  if (!this.checkValidity()) {
+    status.className = 'af-status is-err';
+    status.textContent = '⚠ Please fill in every required field.';
+    this.reportValidity();
     return;
   }
-  status.hidden = false;
-  status.className = 'apply-status apply-status--ok';
-  status.textContent = '✓  Thanks — your application was submitted. We will be in touch.';
-  e.target.reset();
-  document.querySelectorAll('.upload-pill').forEach(p => p.classList.remove('has-file'));
-  document.querySelectorAll('.upload-filename').forEach(s => s.textContent = '');
+
+  status.className = 'af-status is-ok';
+  status.textContent = '✓  Application submitted. We will be in touch soon.';
+  this.reset();
+
+  document.querySelectorAll('.af-upload-slot').forEach(s => {
+    s.classList.remove('has-file');
+    s.querySelector('.af-upload-filename').textContent = '';
+  });
+  document.querySelectorAll('.af-select').forEach(sel => {
+    sel.dataset.empty = 'true';
+  });
+});
+
+/* ---- i18n extras: add new keys not in original dict ---- */
+/* Patch DICT inline after i18n.js has loaded */
+document.addEventListener('DOMContentLoaded', function() {
+  /* These keys don't exist in i18n.js yet — add graceful fallbacks here
+     by simply leaving the HTML default text in place (which is already set). */
 });
 </script>
 </body>
